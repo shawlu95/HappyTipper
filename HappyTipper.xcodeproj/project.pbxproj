@@ -12,6 +12,7 @@
 		1B8A8AA52B22EC8000F2DE35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B8A8AA42B22EC8000F2DE35 /* Assets.xcassets */; };
 		1B8A8AA82B22EC8000F2DE35 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B8A8AA72B22EC8000F2DE35 /* Preview Assets.xcassets */; };
 		1B8A8AAF2B22EEC000F2DE35 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B8A8AAE2B22EEC000F2DE35 /* Launch Screen.storyboard */; };
+		1B8A8AB12B22F13100F2DE35 /* PriceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A8AB02B22F13100F2DE35 /* PriceCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		1B8A8AA42B22EC8000F2DE35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B8A8AA72B22EC8000F2DE35 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1B8A8AAE2B22EEC000F2DE35 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		1B8A8AB02B22F13100F2DE35 /* PriceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 				1B8A8AA02B22EC7E00F2DE35 /* HappyTipperApp.swift */,
 				1B8A8AAE2B22EEC000F2DE35 /* Launch Screen.storyboard */,
 				1B8A8AA22B22EC7E00F2DE35 /* ContentView.swift */,
+				1B8A8AB02B22F13100F2DE35 /* PriceCardView.swift */,
 				1B8A8AA42B22EC8000F2DE35 /* Assets.xcassets */,
 				1B8A8AA62B22EC8000F2DE35 /* Preview Content */,
 			);
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B8A8AA32B22EC7E00F2DE35 /* ContentView.swift in Sources */,
+				1B8A8AB12B22F13100F2DE35 /* PriceCardView.swift in Sources */,
 				1B8A8AA12B22EC7E00F2DE35 /* HappyTipperApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
