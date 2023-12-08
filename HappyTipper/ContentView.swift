@@ -12,6 +12,15 @@ struct ContentView: View {
     @State var selectedPercent = 5
     @State var personsToSplitBill = 1
     
+    let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
+        formatter.decimalSeparator = "."
+        return formatter
+    }() // execute the closure
+    
     var body: some View {
         VStack(spacing: 30) {
             Text("HappyTipper")
@@ -78,11 +87,20 @@ struct ContentView: View {
     
     func calculateTip() {
         print("Calculate Bill")
+        guard let billAmountNumber = formatter.number(from: bill) else {
+            return // if the bill is not a number, return
+        }
         
+        let billAmount = Float(truncating: billAmountNumber)
+        let tipPercent = Float(selectedPercent) / 100.0
+        let totalBillWithTip = billAmount * (1 + tipPercent)
+        
+        let totalPerPerson = totalBillWithTip / Float(personsToSplitBill)
     }
     
     func resetValues() {
         print("Cancel")
+        
     }
 }
 
