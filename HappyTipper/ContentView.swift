@@ -51,9 +51,38 @@ struct ContentView: View {
                     }
                 }
             }
+            
+            Button(action: {
+                calculateTip()
+            }, label: {
+                Text("Calculate Bill with Tip")
+                    .frame(width: 350, height: 50)
+                    .background(.appPink)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+            })
+            
+            Button(action: {
+                resetValues()
+            }, label: {
+                Text("Cancel")
+                    .frame(width: 350, height: 50)
+                    .background(.gray.opacity(0.2))
+                    .foregroundColor(.appPink)
+                    .cornerRadius(12)
+            })
         }
         .padding(.leading, 20)
         .padding(.trailing, 20)
+    }
+    
+    func calculateTip() {
+        print("Calculate Bill")
+        
+    }
+    
+    func resetValues() {
+        print("Cancel")
     }
 }
 
