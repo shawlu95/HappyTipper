@@ -8,17 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var bill: String = ""
-    @State var selectedPercent = 5
-    @State var personsToSplitBill = 1
+    @State var originalBill: String = ""
+    @State var tipPercent = 5
+    @State var splitBy = 1
     
-    @State var billWithTip: String = "0.00"
-    @State var totalBill: String = "0.00"
     @State var tip: String = "0.00"
+    @State var totalBill: String = "0.00"
+    @State var totalPerPerson: String = "0.00"
     
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
         formatter.decimalSeparator = "."
@@ -30,11 +29,17 @@ struct ContentView: View {
             Text("HappyTipper")
                 .font(.title2)
                 
-            PriceCardView(billWithTip: $billWithTip)
+            PriceCardView(
+                originalBill: $originalBill,
+                tipPercent: $tipPercent,
+                splitBy: $splitBy,
+                tip: $tip,
+                totalBill: $totalBill,
+                totalPerPerson: $totalPerPerson)
             
             VStack(alignment: .leading, content: {
                 Text("Enter your total bill amount:")
-                TextField("", text: $bill) // binding required
+                TextField("", text: $originalBill) // binding required
                     .font(.system(size: 22))
                     .padding(20) // text ditance to the left
                     .frame(width: 350, height: 50)
@@ -46,7 +51,7 @@ struct ContentView: View {
             // spacing 30 should apply to this one too
             VStack() {
                 Text("Select your desired tip percentage:")
-                Picker("Tip", selection: $selectedPercent) {
+                Picker("Tip", selection: $tipPercent) {
                     Text("0%").tag(0)
                     Text("5%").tag(5)
                     Text("10%").tag(10)
@@ -56,10 +61,10 @@ struct ContentView: View {
             
             VStack(alignment: .leading) {
                 Text("Number of persons to split bill:").foregroundColor(.gray)
-                Stepper(value: $personsToSplitBill, in: 1...5, step: 1) {
+                Stepper(value: $splitBy, in: 1...5, step: 1) {
                     HStack {
                         Text("Split by People:")
-                        Text("\(personsToSplitBill)")
+                        Text("\(splitBy)")
                             .font(.title2)
                     }
                 }
@@ -90,20 +95,29 @@ struct ContentView: View {
     }
     
     func calculateTip() {
-        print("Calculate Bill")
-        guard let billAmountNumber = formatter.number(from: bill) else {
+        guard let billAmountNumber = formatter.number(from: originalBill) else {
             return // if the bill is not a number, return
         }
         
         let billAmount = Float(truncating: billAmountNumber)
-        let tipPercent = Float(selectedPercent) / 100.0
-        let totalBillWithTip = billAmount * (1 + tipPercent)
+        let tipPercent = Float(tipPercent) / 100.0
+        let tip = billAmount * tipPercent
+        let totalBill = billAmount * (1 + tipPercent)
+        let totalPerPerson = totalBill / Float(splitBy)
         
-        let totalPerPerson = totalBillWithTip / Float(personsToSplitBill)
+        self.tip = formatter.string(from: NSNumber(value: tip)) ?? ""
+        self.totalBill = formatter.string(from: NSNumber(value: totalBill)) ?? ""
+        self.totalPerPerson = formatter.string(from: NSNumber(value: totalPerPerson)) ?? ""
     }
     
     func resetValues() {
-        print("Cancel")
+        self.tip = "0.00"
+        self.totalBill = "0.00"
+        self.totalPerPerson = "0.00"
+        
+        self.splitBy = 1
+        self.tipPercent = 5
+        self.originalBill = ""
         
     }
 }
