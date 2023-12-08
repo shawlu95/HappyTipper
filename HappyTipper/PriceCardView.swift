@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct PriceCardView: View {
+    // use binding, not state, because the states come from other view
+    // this view doesn't own the bind state
+    @Binding var billWithTip: String
+    
     var body: some View {
         VStack (spacing: 10) {
             Group {
-                Text("Total per person: $100.00")
+                Text("Total per person: \(billWithTip)")
                 Text("Grand Total: $200.00")
             }.font(.title2)
             
@@ -30,5 +34,5 @@ struct PriceCardView: View {
 }
 
 #Preview {
-    PriceCardView()
+    PriceCardView(billWithTip: .constant("$50.00"))
 }

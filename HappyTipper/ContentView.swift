@@ -12,6 +12,10 @@ struct ContentView: View {
     @State var selectedPercent = 5
     @State var personsToSplitBill = 1
     
+    @State var billWithTip: String = "0.00"
+    @State var totalBill: String = "0.00"
+    @State var tip: String = "0.00"
+    
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
@@ -26,7 +30,7 @@ struct ContentView: View {
             Text("HappyTipper")
                 .font(.title2)
                 
-            PriceCardView()
+            PriceCardView(billWithTip: $billWithTip)
             
             VStack(alignment: .leading, content: {
                 Text("Enter your total bill amount:")
