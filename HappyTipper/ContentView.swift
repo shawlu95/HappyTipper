@@ -97,6 +97,9 @@ struct ContentView: View {
                 resetValues()
             }
         }
+        .onChange(of: tipPercent) { newValue in
+            resetValues()
+        }
     }
     
     func calculateTip() {
