@@ -12,6 +12,8 @@ struct ContentView: View {
     @State var tipPercent = 5
     @State var splitBy = 1
     
+    @State var showAlert = false
+    
     @State var tip: String = "0.00"
     @State var totalBill: String = "0.00"
     @State var totalPerPerson: String = "0.00"
@@ -90,6 +92,12 @@ struct ContentView: View {
                     .cornerRadius(12)
             })
         }
+        .alert("Please enter a valid number.", isPresented: $showAlert, actions: {
+            Button("OK", role: .cancel) {
+                showAlert = false
+                originalBill = ""
+            }
+        })
         .padding(.leading, 20)
         .padding(.trailing, 20)
         .onChange(of: originalBill) { newValue in
@@ -104,6 +112,7 @@ struct ContentView: View {
     
     func calculateTip() {
         guard let billAmountNumber = formatter.number(from: originalBill) else {
+            showAlert = true
             return // if the bill is not a number, return
         }
         
