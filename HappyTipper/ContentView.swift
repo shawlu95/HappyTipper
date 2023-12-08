@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State var bill: String = ""
+    @State var selectedPercent = 5
     var body: some View {
         VStack(spacing: 30) {
             Text("HappyTipper")
@@ -24,8 +25,15 @@ struct ContentView: View {
                     .frame(width: 350, height: 50)
                     .background(.gray.opacity(0.2))
                     .cornerRadius(12)
+                
+                Text("Select your desired tip percentage:")
+                Picker("Tip", selection: $selectedPercent) {
+                    Text("0%")
+                    Text("5%")
+                    Text("10%")
+                    Text("15%")
+                }.pickerStyle(.segmented)
             })
-            
         }
         .padding()
     }
