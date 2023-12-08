@@ -28,10 +28,10 @@ struct ContentView: View {
                 
                 Text("Select your desired tip percentage:")
                 Picker("Tip", selection: $selectedPercent) {
-                    Text("0%")
-                    Text("5%")
-                    Text("10%")
-                    Text("15%")
+                    Text("0%").tag(0)
+                    Text("5%").tag(5)
+                    Text("10%").tag(10)
+                    Text("15%").tag(15)
                 }.pickerStyle(.segmented)
             })
         }
