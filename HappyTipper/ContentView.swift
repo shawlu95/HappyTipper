@@ -92,6 +92,11 @@ struct ContentView: View {
         }
         .padding(.leading, 20)
         .padding(.trailing, 20)
+        .onChange(of: originalBill) { newValue in
+            if newValue.isEmpty {
+                resetValues()
+            }
+        }
     }
     
     func calculateTip() {
