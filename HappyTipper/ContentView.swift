@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     @State var bill: String = ""
     @State var selectedPercent = 5
+    @State var personsToSplitBill = 1
+    
     var body: some View {
         VStack(spacing: 30) {
             Text("HappyTipper")
@@ -37,6 +39,17 @@ struct ContentView: View {
                     Text("10%").tag(10)
                     Text("15%").tag(15)
                 }.pickerStyle(.segmented)
+            }
+            
+            VStack(alignment: .leading) {
+                Text("Number of persons to split bill:").foregroundColor(.gray)
+                Stepper(value: $personsToSplitBill, in: 1...5, step: 1) {
+                    HStack {
+                        Text("Split by People:")
+                        Text("\(personsToSplitBill)")
+                            .font(.title2)
+                    }
+                }
             }
         }
         .padding(.leading, 20)
