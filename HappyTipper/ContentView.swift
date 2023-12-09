@@ -84,6 +84,10 @@ struct ContentView: View {
             
             Button(action: {
                 resetValues()
+                
+                self.splitBy = 1
+                self.tipPercent = 5
+                self.originalBill = ""
             }, label: {
                 Text("Cancel")
                     .frame(width: 350, height: 50)
@@ -131,11 +135,6 @@ struct ContentView: View {
         self.tip = "0.00"
         self.totalBill = "0.00"
         self.totalPerPerson = "0.00"
-        
-        self.splitBy = 1
-        self.tipPercent = 5
-        self.originalBill = ""
-        
     }
 }
 
